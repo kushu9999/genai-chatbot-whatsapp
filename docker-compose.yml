@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+
+  web:
+    container_name: chatbot_backend
+    build:
+      context: services/chatbot_backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./services/chatbot_backend:/app
+    env_file:
+      - .env
+    networks:
+      - chatbot_network
+
+  redis:
+    container_name: redis_backend
+    image: redis
+    ports:
+      - 6379:6379
+    networks:
+      - chatbot_network
+
+  postgres:
+    container_name: postgres_backend
+    image: postgres
+    ports:
+    - 5432:5432
+    networks:
+      - chatbot_network
+
+
+
+networks:
+  chatbot_network:

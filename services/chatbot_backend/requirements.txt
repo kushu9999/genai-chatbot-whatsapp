@@ -1,0 +1,13 @@
+langchain
+langchain_community
+langchain_core
+langchain-openai
+faiss-cpu
+pypdf
+twilio
+fastapi
+uvicorn
+gunicorn
+python-dotenv
+python-multipart
+redis
